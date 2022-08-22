@@ -20,12 +20,13 @@ export async function outLogin(options?: { [key: string]: any }) {
   });
 }
 
-/** 登录接口 POST /api/login/account */
+/** 登录接口 POST /api/auth/signIn */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>('/api/login/account', {
-    method: 'POST',
+  return request<API.LoginResult>('/api/auth/signIn', {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      'User-Agent': 'YSY/1.2.3 Android/4.5.6',
     },
     data: body,
     ...(options || {}),
