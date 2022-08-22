@@ -4,9 +4,8 @@ import { request } from '@umijs/max';
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
-  return request<{
-    data: API.CurrentUser;
-  }>('/api/currentUser', {
+  console.log("用户信息", options)
+  return request<API.LoginResult>('/api/currentUser', {
     method: 'GET',
     ...(options || {}),
   });
@@ -20,13 +19,12 @@ export async function outLogin(options?: { [key: string]: any }) {
   });
 }
 
-/** 登录接口 POST /api/auth/signIn */
+/** 登录接口 POST /api/login/account */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>('/api/auth/signIn', {
-    method: 'PUT',
+  return request<API.LoginResult>('/v1/admin/login', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'User-Agent': 'YSY/1.2.3 Android/4.5.6',
     },
     data: body,
     ...(options || {}),

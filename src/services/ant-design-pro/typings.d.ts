@@ -24,10 +24,19 @@ declare namespace API {
   };
 
   type LoginResult = {
-    status?: string;
+    code?: number;
     type?: string;
-    currentAuthority?: string;
+    description?: string;
+    user?: UserInfo;
+    access_token?: string
   };
+  type UserInfo = {
+    id: string;
+    name: string;
+    username: string;
+    bio?: string;
+    status?: string
+  }
 
   type PageParams = {
     current?: number;
@@ -62,7 +71,7 @@ declare namespace API {
   };
 
   type LoginParams = {
-    username?: string;
+    phone_number?: string;
     password?: string;
     autoLogin?: boolean;
     type?: string;
