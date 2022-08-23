@@ -12,6 +12,7 @@ import { FormattedMessage, history, SelectLang, useIntl, useModel } from '@umijs
 import { Alert, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import styles from './index.less';
+import {Md5} from 'ts-md5';
 
 const LoginMessage: React.FC<{
   content: string;
@@ -35,15 +36,20 @@ const Login: React.FC = () => {
 
   const intl = useIntl();
 
-  const fetchUserInfo = async (userInfo: API.LoginParams) => {
+  const fetchUserInfo = async (userInfo: API.LoginResult) => {
+    const key = "token";
+    localStorage.setItem(key, userInfo.access_token as string)
     await setInitialState((s) => ({
       ...s,
-      currentUser: userInfo,
+      currentUser: userInfo.user,
     }));
   };
 
   const handleSubmit = async (values: API.LoginParams) => {
     try {
+      if (values.password != null) {
+        values.password = Md5.hashStr(values.password)
+      }
       // 登录
       const msg = await login({ ...values, type });
       if (msg.user != undefined) {
@@ -110,7 +116,7 @@ const Login: React.FC = () => {
           {type === 'account' && (
             <>
               <ProFormText
-                name="username"
+                name="phone_number"
                 fieldProps={{
                   size: 'large',
                   prefix: <UserOutlined className={styles.prefixIcon} />,

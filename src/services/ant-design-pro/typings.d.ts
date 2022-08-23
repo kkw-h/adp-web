@@ -36,6 +36,12 @@ declare namespace API {
     username: string;
     bio?: string;
     status?: string
+    avatar?: Avatar
+  }
+  type Avatar = {
+    id: string;
+    url: string;
+    filename: string;
   }
 
   type PageParams = {
