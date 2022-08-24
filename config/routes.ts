@@ -27,6 +27,17 @@ export default [
     component: './Welcome',
   },
   {
+    path: '/course',
+    name: 'course',
+    routes: [
+      {
+        name: 'add',
+        path: 'course/add',
+        component: './Course/Edit',
+      }
+    ]
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
@@ -40,12 +51,12 @@ export default [
       },
     ],
   },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
-  },
+  // {
+  //   name: 'list.table-list',
+  //   icon: 'table',
+  //   path: '/list',
+  //   component: './TableList',
+  // },
   {
     path: '/',
     redirect: '/welcome',
@@ -53,5 +64,5 @@ export default [
   {
     path: '*',
     component: './404',
-  },
+  }
 ];

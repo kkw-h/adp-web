@@ -113,4 +113,40 @@ declare namespace API {
     description?: string;
     type?: NoticeIconItemType;
   };
+  type UploadInfoBody = {
+    filename: string;
+    parts: number;
+    size: string;
+    type: string;
+    mime_type: string;
+    extra: string,
+    hash: string[]
+  }
+  type UploadInfoUrlResult = {
+    ForceQuery: boolean;
+    Fragment: string;
+    Host: string;
+    Opaque: string;
+    Path: string;
+    RawFragment: string;
+    RawPath: string;
+    RawQuery: string;
+    Scheme: string;
+    User: string;
+  }
+  type UploadInfoResult = {
+    file_id: string;
+    file_name: string;
+    url: UploadInfoUrlResult[];
+  }
+}
+declare namespace APICourse {
+  type CourseClassify = {
+    id: string;
+    introduction: string;
+    level: number;
+    name: string;
+    parent_id: string;
+    subclass: CourseClassify[]
+  }
 }

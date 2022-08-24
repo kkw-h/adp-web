@@ -82,3 +82,11 @@ export async function removeRule(options?: { [key: string]: any }) {
     ...(options || {}),
   });
 }
+
+export async function getUploadInfo(body: API.UploadInfoBody ,options?: { [key: string]: any}){
+  return request<API.UploadInfoResult>('/v1/third/minio_credential', {
+    method: 'POST',
+    data: body,
+    ...(options || {})
+  })
+}
